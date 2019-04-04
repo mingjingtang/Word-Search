@@ -52,6 +52,14 @@ window.onload = () => {
                     if (clickedBox.length === 3) {
                         sortClickedBox();
                         checkWin();
+                        if(win == true){
+                            console.log('you win!');
+                        }
+                        else{
+                            console.log("you lose!");
+                        }
+                        createNewBoard();
+                        addListener();
                     }
                 } else {
                     //if is red, change to white
@@ -71,6 +79,14 @@ window.onload = () => {
                     if (clickedBox.length === 3) {
                         sortClickedBox();
                         checkWin();
+                        if(win == true){
+                            console.log('you win!');
+                        }
+                        else{
+                            console.log("you lose!");
+                        }
+                        createNewBoard();
+                        addListener();
                     }
                 }
 
@@ -107,11 +123,9 @@ window.onload = () => {
 
                     for (let k = 0; k < wordArr1Solution.length; k++) {
                         if (letterCollected === wordArr1Solution[k]) {
-                            console.log('you win!');
+                            win = true;
                         }
                     }
-
-                    // console.log("you lose");
                 }
 
             }
