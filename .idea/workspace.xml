@@ -8,7 +8,6 @@
       <change afterPath="$PROJECT_DIR$/Word-Search/login.css" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Word-Search/login.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Word-Search/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Word-Search" beforeDir="false" afterPath="$PROJECT_DIR$/Word-Search" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -19,14 +18,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.8933333">
+    <splitter split-orientation="horizontal" split-proportion="0.7250225">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Word-Search/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="503">
-                  <caret line="109" column="53" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
+                <state relative-caret-position="-829">
+                  <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
                 </state>
               </provider>
             </entry>
@@ -34,7 +33,7 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Word-Search/game.html">
               <provider selected="true" editor-type-id="text-editor">
@@ -47,7 +46,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Word-Search/game.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="397">
+                <state relative-caret-position="697">
                   <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
                 </state>
               </provider>
@@ -100,6 +99,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -110,18 +110,12 @@
             <path>
               <item name="word search" type="b2602c69:ProjectViewProjectNode" />
               <item name="word search" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="word search" type="b2602c69:ProjectViewProjectNode" />
-              <item name="word search" type="462c0819:PsiDirectoryNode" />
               <item name="Word-Search" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -199,25 +193,25 @@
       <updated>1554212675045</updated>
       <workItem from="1554212682703" duration="4957000" />
       <workItem from="1554218034253" duration="44896000" />
+      <workItem from="1554352485341" duration="355000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49853000" />
+    <option name="totallyTimeSpent" value="49889000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="42" y="23" width="1398" height="820" extended-state="0" />
-    <editor active="true" />
+    <frame x="979" y="-1417" width="2555" height="1417" extended-state="6" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.028231798" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.1378346" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49851412" visible="true" weight="0.053596616" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49851412" visible="true" weight="0.3392037" />
       <window_info anchor="bottom" id="Database Changes" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5014859" side_tool="true" visible="true" weight="0.053596616" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
@@ -242,14 +236,23 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Word-Search/game.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="6" lean-forward="true" selection-start-line="12" selection-start-column="6" selection-end-line="12" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/untitled.iml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -291,7 +294,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Word-Search/game.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
+        <state relative-caret-position="697">
           <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
         </state>
       </provider>
@@ -305,8 +308,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Word-Search/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="503">
-          <caret line="109" column="53" selection-start-line="109" selection-start-column="53" selection-end-line="109" selection-end-column="53" />
+        <state relative-caret-position="-829">
+          <caret line="23" column="33" lean-forward="true" selection-start-line="23" selection-start-column="33" selection-end-line="23" selection-end-column="33" />
         </state>
       </provider>
     </entry>
