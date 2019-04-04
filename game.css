@@ -8,14 +8,26 @@ body{
 }
 
 .headline{
-    display: inline;
-    font-size: 3em;
-    letter-spacing: 4px;
+    display: inline-flex;
+    font-size: 2em;
+    letter-spacing: 3px;
     text-transform: uppercase;
 }
 
-p{
-    margin-bottom: 50px;
+.scoreDisplay{
+    display: inline-flex;
+    margin-left: 3em;
+}
+
+.headline p{
+    margin-right: 15px;
+}
+
+#changeScore{
+    align-self: center;
+    padding: 5px 10px ;
+    border: 2px solid gray;
+    border-radius: 5px;
 }
 
 .boxes{

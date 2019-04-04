@@ -99,11 +99,12 @@ window.onload = () => {
                 console.log('you find one word!');
                 countWin++;
                 console.log(countWin);
+                document.getElementById('changeScore').innerHTML = countWin;
+
             } else {
                 console.log("you lose!");
             }
             clearBoard();
-            // addListener();
         }
     }
 
