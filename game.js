@@ -1,17 +1,23 @@
 window.onload = () => {
     let wordArr1 = ['m', 'a', 'y', 'e', 'f', 'o', 'n', 'g', 'u'];
     let wordArr1Solution = ['may', 'men', 'you'];
+    let wordArr2 = ['b', 'i', 't', 'c', 'a', 'r', 'e', 'e', 'd'];
+    let wordArr2Solution = ['bad', 'car', 'eat'];
+    sortWordArr(wordArr1Solution);
+    sortWordArr(wordArr2Solution);
 
     let clickedBox = [];
     let letterCollected = '';
-    let win;
+    let win = false;
     let countWin;
-
+    let round = 1;
     let allBox = document.querySelectorAll(".boxes");
     console.log(allBox);
-    sortWordArr();
-    createNewBoard();
     addListener();
+
+
+    createNewBoard(wordArr1);
+
 
 
     class letterObject {
@@ -21,34 +27,45 @@ window.onload = () => {
         }
     }
 
-    function sortWordArr() {
-        for (let d = 0; d < wordArr1Solution.length; d++) {
-            let eachWordSorted = wordArr1Solution[d].split('').sort().join('');
-            console.log(eachWordSorted);
-            wordArr1Solution[d] = eachWordSorted;
+    function sortWordArr(wordArrSolution) {
+        for (let d = 0; d < wordArrSolution.length; d++) {
+            let eachWordSorted = wordArrSolution[d].split('').sort().join('');
+            wordArrSolution[d] = eachWordSorted;
+            console.log(wordArrSolution[d]);
         }
     }
 
-    function createNewBoard() {
+    function createNewBoard(wordArr) {
+        countWin = 0;
+        for (let j = 0; j < allBox.length; j++) {
+            allBox[j].innerHTML = wordArr[j];
+        }
+    }
+
+    function clearBoard(wordArr){
+        clickedBox = [];
+        letterCollected = '';
+        win = false;
+        for (let j = 0; j < allBox.length; j++) {
+            allBox[j].style.backgroundColor = "#ffffff";
+            allBox[j].innerHTML = wordArr[j];
+        }
+    }
+
+    function clearRound(wordArr){
+        // allBox = document.querySelectorAll(".boxes");
+        // console.log(allBox);
         clickedBox = [];
         letterCollected = '';
         win = false;
         countWin = 0;
-        for (let j = 0; j < allBox.length; j++) {
+        document.getElementById('changeScore').innerHTML = '0';
+        for (let j = 0; j < wordArr2.length; j++) {
             allBox[j].style.backgroundColor = "#ffffff";
-            allBox[j].innerHTML = wordArr1[j];
+            allBox[j].innerHTML = '';
         }
     }
 
-    function clearBoard(){
-        clickedBox = [];
-        letterCollected = '';
-        win = false;
-        for (let j = 0; j < allBox.length; j++) {
-            allBox[j].style.backgroundColor = "#ffffff";
-            allBox[j].innerHTML = wordArr1[j];
-        }
-    }
 
     function addListener() {
         for (let i = 0; i < allBox.length; i++) {
@@ -94,19 +111,48 @@ window.onload = () => {
     function clickBoxNum3() {
         if (clickedBox.length === 3) {
             sortClickedBox();
-            checkWin();
-            if (win === true) {
-                console.log('you find one word!');
-                countWin++;
-                console.log(countWin);
-                document.getElementById('changeScore').innerHTML = countWin;
 
-            } else {
-                console.log("you lose!");
+            if(round === 1){
+                checkWin(wordArr1Solution);
+                if (win === true) {
+                    console.log('you find one word!');
+                    countWin++;
+                    console.log(countWin);
+                    document.getElementById('changeScore').innerHTML = countWin;
+                }
+                else {
+                    console.log("you lose!");
+                }
+                clearBoard(wordArr1);
             }
-            clearBoard();
+            else{
+                checkWin(wordArr2Solution);
+                if (win === true) {
+                    console.log('you find one word!');
+                    countWin++;
+                    console.log(countWin);
+                    document.getElementById('changeScore').innerHTML = countWin;
+                }
+                else {
+                    console.log("you lose!");
+                }
+                clearBoard(wordArr2);
+            }
+
+            if(countWin === 3){
+                if(round === 1){
+                    alert('You win round 1, do you want to play round 2?');
+                    round++;
+                    clearRound();
+                    createNewBoard(wordArr2);
+                }
+                else{
+                    alert("Finished 2 round! Good on you!");
+                }
+            }
         }
     }
+
 
     function sortClickedBox() {
         clickedBox.sort(function (a, b) {
@@ -118,14 +164,14 @@ window.onload = () => {
     }
 
 
-    function checkWin() {
+    function checkWin(wordArrSolution) {
         letterCollected = '';
         for (let k = 0; k < 3; k++) {
             letterCollected += clickedBox[k].letter;
             console.log("collect letter " + letterCollected);
         }
-        for (let k = 0; k < wordArr1Solution.length; k++) {
-            if (letterCollected === wordArr1Solution[k]) {
+        for (let k = 0; k < wordArrSolution.length; k++) {
+            if (letterCollected === wordArrSolution[k]) {
                 win = true;
             }
         }
