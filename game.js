@@ -3,11 +3,21 @@ window.onload = () => {
     let wordArr1Solution = ['may', 'men', 'you'];
 
     let clickedBox = [];
-    let countWin;
     let letterCollected = '';
     let win;
+    let countWin;
+    sortWordArr();
     let allBox = document.querySelectorAll(".boxes");
     console.log(allBox);
+
+
+    function sortWordArr() {
+        for (let d = 0; d < wordArr1Solution.length; d++) {
+            let eachWordSorted = wordArr1Solution[d].split('').sort().join('');
+            console.log(eachWordSorted);
+            wordArr1Solution[d] = eachWordSorted;
+        }
+    }
 
     function createNewBoard() {
         clickedBox = [];
@@ -34,103 +44,94 @@ window.onload = () => {
     function addListener() {
         for (let i = 0; i < allBox.length; i++) {
             allBox[i].addEventListener('click', () => {
-                //get current color of the box.
-                let boxColor = window.getComputedStyle(allBox[i], null).getPropertyValue('background-color');
+                checkColor(allBox[i],i);
+                clickBoxNum3();
+            });
+        }
+    }
 
-                if (boxColor === "rgb(255, 255, 255)") {
-                    //if is white, change color to red
-                    allBox[i].style.backgroundColor = "#ff0000";
+    function checkColor(box,i) {
+        //get current color of the box.
+        let boxColor = window.getComputedStyle(box, null).getPropertyValue('background-color');
+        if (boxColor === "rgb(255, 255, 255)") {
+            //if is white, change color to red
+            box.style.backgroundColor = "#ff0000";
+            createNewLetterObject(box,i);
+        } else {
+            //if is red, change to white
+            box.style.backgroundColor = "#ffffff";
+            removeLetterObject(box,i);
+        }
+    }
 
-                    //create new letterObject, add to clickedBox
-                    let clickedLetter = allBox[i].innerHTML;
-                    let clickLetterboxNum = i;
-                    let newLetter = new letterObject(clickedLetter, clickLetterboxNum);
-                    clickedBox.push(newLetter);
-                    console.log(clickedBox);
 
-                    //if clickedBox hit 3, sort box, check win
-                    if (clickedBox.length === 3) {
-                        sortClickedBox();
-                        checkWin();
-                        if(win == true){
-                            console.log('you win!');
-                        }
-                        else{
-                            console.log("you lose!");
-                        }
-                        createNewBoard();
-                        addListener();
-                    }
-                } else {
-                    //if is red, change to white
-                    allBox[i].style.backgroundColor = "#ffffff";
+    function createNewLetterObject(box,i) {
+        //create new letterObject, add to clickedBox
+        let clickedLetter = box.innerHTML;
+        let clickLetterboxNum = i;
+        let newLetter = new letterObject(clickedLetter, clickLetterboxNum);
+        clickedBox.push(newLetter);
+        console.log(clickedBox);
+    }
 
-                    //remove letterObject
-                    for (let j = 0; j < clickedBox.length; j++) {
-                        if (i === clickedBox[j].number) {
-                            clickedBox.splice(j, 1);
-                            let currentLetter = allBox[i].innerHTML;
-                            console.log(currentLetter);
-                            console.log(clickedBox);
-                        }
-                    }
 
-                    //if clickedBox hit 3, sort box, check win
-                    if (clickedBox.length === 3) {
-                        sortClickedBox();
-                        checkWin();
-                        if(win == true){
-                            console.log('you win!');
-                        }
-                        else{
-                            console.log("you lose!");
-                        }
-                        createNewBoard();
-                        addListener();
-                    }
-                }
-
-                function sortClickedBox() {
-                    // clickedBox.sort(compare);
-                    // function compare(a, b) {
-                    //     return a.number - b.number;
-                    // }
-                    // userInput = userInput.split('').sort().join('');
-
-                    clickedBox.sort(function (a, b) {
-                        let textA = a.letter.toUpperCase();
-                        let textB = b.letter.toUpperCase();
-                        return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-                    });
-                    console.log(clickedBox);
-                }
-
-                function sortWordArr() {
-                    for (let d = 0; d < wordArr1Solution.length; d++) {
-                        let eachWordSorted = wordArr1Solution[d].split('').sort().join('');
-                        console.log(eachWordSorted);
-                        wordArr1Solution[d] = eachWordSorted;
-                    }
-                }
-
-                function checkWin() {
-                    letterCollected = '';
-                    for (let k = 0; k < 3; k++) {
-                        letterCollected += clickedBox[k].letter;
-                        console.log("collect letter " + letterCollected);
-                    }
-                    sortWordArr();
-
-                    for (let k = 0; k < wordArr1Solution.length; k++) {
-                        if (letterCollected === wordArr1Solution[k]) {
-                            win = true;
-                        }
-                    }
-                }
-
+    function removeLetterObject(box,i) {
+        //remove letterObject
+        for (let j = 0; j < clickedBox.length; j++) {
+            if (i === clickedBox[j].number) {
+                clickedBox.splice(j, 1);
+                let currentLetter = box.innerHTML;
+                console.log(currentLetter);
+                console.log(clickedBox);
             }
+        }
+    }
 
-    );
+    function clickBoxNum3() {
+        //if clickedBox hit 3, sort box, check win
+        if (clickedBox.length === 3) {
+            sortClickedBox();
+            checkWin();
+            if (win === true) {
+                console.log('you win!');
+                // createNewBoard();
+                // addListener();
+            } else {
+                console.log("you lose!");
+                // createNewBoard();
+                // addListener();
+            }
+        }
+    }
+
+    function sortClickedBox() {
+        // clickedBox.sort(compare);
+        // function compare(a, b) {
+        //     return a.number - b.number;
+        // }
+
+        clickedBox.sort(function (a, b) {
+            let textA = a.letter.toUpperCase();
+            let textB = b.letter.toUpperCase();
+            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+        });
+        console.log(clickedBox);
+    }
+
+
+    function checkWin() {
+        letterCollected = '';
+        for (let k = 0; k < 3; k++) {
+            letterCollected += clickedBox[k].letter;
+            console.log("collect letter " + letterCollected);
+        }
+
+        for (let k = 0; k < wordArr1Solution.length; k++) {
+            if (letterCollected === wordArr1Solution[k]) {
+                win = true;
+            }
+        }
     }
 }
-}
+
+

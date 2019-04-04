@@ -18,8 +18,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/game.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="279">
-                  <caret line="88" column="38" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+                <state relative-caret-position="205">
+                  <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
                 </state>
               </provider>
             </entry>
@@ -63,6 +63,7 @@
     <findStrings>
       <find>userinput</find>
       <find>lose</find>
+      <find>clickedBox</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -133,7 +134,7 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554392192532" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1554395771725" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
@@ -188,12 +189,12 @@
       <updated>1554212675045</updated>
       <workItem from="1554212682703" duration="4957000" />
       <workItem from="1554218034253" duration="44896000" />
-      <workItem from="1554352485341" duration="10107000" />
+      <workItem from="1554352485341" duration="13581000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59641000" />
+    <option name="totallyTimeSpent" value="63115000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="820" extended-state="0" />
@@ -207,7 +208,7 @@
       <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.15273775" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" weight="0.32863188" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49851412" visible="true" weight="0.42736247" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="1" sideWeight="0.49851412" visible="true" weight="0.053596616" />
       <window_info anchor="bottom" id="Database Changes" order="2" />
       <window_info anchor="bottom" id="Event Log" order="3" sideWeight="0.5014859" side_tool="true" visible="true" weight="0.053596616" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
@@ -304,8 +305,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/game.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="88" column="38" selection-start-line="88" selection-start-column="38" selection-end-line="88" selection-end-column="38" />
+        <state relative-caret-position="205">
+          <caret line="99" column="27" selection-start-line="99" selection-start-column="27" selection-end-line="99" selection-end-column="27" />
         </state>
       </provider>
     </entry>
