@@ -6,10 +6,20 @@ window.onload = () => {
     let letterCollected = '';
     let win;
     let countWin;
-    sortWordArr();
+
     let allBox = document.querySelectorAll(".boxes");
     console.log(allBox);
+    sortWordArr();
+    createNewBoard();
+    addListener();
 
+
+    class letterObject {
+        constructor(letter, number) {
+            this.letter = letter;
+            this.number = number;
+        }
+    }
 
     function sortWordArr() {
         for (let d = 0; d < wordArr1Solution.length; d++) {
@@ -21,7 +31,17 @@ window.onload = () => {
 
     function createNewBoard() {
         clickedBox = [];
-        // countWin = 0;
+        letterCollected = '';
+        win = false;
+        countWin = 0;
+        for (let j = 0; j < allBox.length; j++) {
+            allBox[j].style.backgroundColor = "#ffffff";
+            allBox[j].innerHTML = wordArr1[j];
+        }
+    }
+
+    function clearBoard(){
+        clickedBox = [];
         letterCollected = '';
         win = false;
         for (let j = 0; j < allBox.length; j++) {
@@ -29,17 +49,6 @@ window.onload = () => {
             allBox[j].innerHTML = wordArr1[j];
         }
     }
-
-    class letterObject {
-        constructor(letter, number) {
-            this.letter = letter;
-            this.number = number;
-        }
-    }
-
-    createNewBoard();
-    addListener();
-
 
     function addListener() {
         for (let i = 0; i < allBox.length; i++) {
@@ -51,14 +60,11 @@ window.onload = () => {
     }
 
     function checkColor(box,i) {
-        //get current color of the box.
         let boxColor = window.getComputedStyle(box, null).getPropertyValue('background-color');
         if (boxColor === "rgb(255, 255, 255)") {
-            //if is white, change color to red
             box.style.backgroundColor = "#ff0000";
             createNewLetterObject(box,i);
         } else {
-            //if is red, change to white
             box.style.backgroundColor = "#ffffff";
             removeLetterObject(box,i);
         }
@@ -66,7 +72,6 @@ window.onload = () => {
 
 
     function createNewLetterObject(box,i) {
-        //create new letterObject, add to clickedBox
         let clickedLetter = box.innerHTML;
         let clickLetterboxNum = i;
         let newLetter = new letterObject(clickedLetter, clickLetterboxNum);
@@ -76,7 +81,6 @@ window.onload = () => {
 
 
     function removeLetterObject(box,i) {
-        //remove letterObject
         for (let j = 0; j < clickedBox.length; j++) {
             if (i === clickedBox[j].number) {
                 clickedBox.splice(j, 1);
@@ -88,28 +92,22 @@ window.onload = () => {
     }
 
     function clickBoxNum3() {
-        //if clickedBox hit 3, sort box, check win
         if (clickedBox.length === 3) {
             sortClickedBox();
             checkWin();
             if (win === true) {
-                console.log('you win!');
-                // createNewBoard();
-                // addListener();
+                console.log('you find one word!');
+                countWin++;
+                console.log(countWin);
             } else {
                 console.log("you lose!");
-                // createNewBoard();
-                // addListener();
             }
+            clearBoard();
+            // addListener();
         }
     }
 
     function sortClickedBox() {
-        // clickedBox.sort(compare);
-        // function compare(a, b) {
-        //     return a.number - b.number;
-        // }
-
         clickedBox.sort(function (a, b) {
             let textA = a.letter.toUpperCase();
             let textB = b.letter.toUpperCase();
@@ -125,7 +123,6 @@ window.onload = () => {
             letterCollected += clickedBox[k].letter;
             console.log("collect letter " + letterCollected);
         }
-
         for (let k = 0; k < wordArr1Solution.length; k++) {
             if (letterCollected === wordArr1Solution[k]) {
                 win = true;
