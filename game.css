@@ -2,9 +2,10 @@ body{
     width: 900px;
     margin : 3em auto;
     text-align: center;
-    background-image: url("src/blue.jpeg");
-    background-size: cover;
+    background-image: url("src/retina_wood.png");
+    /*background-size: cover;*/
     font-family: 'Anton', sans-serif;
+    background-repeat: repeat;
 }
 
 .headline{
@@ -31,20 +32,28 @@ body{
 }
 
 .boxes{
-    border: 3px solid gray;
     text-align: center;
     font-size: 3em;
-    background-color: #ffffff;
+    background-color: rgb(245, 239, 228);
+    border-radius: 14px;
+    margin: 5px;
+}
+
+.boxes:hover{
+    cursor: pointer;
 }
 
 .grid{
-     width: 600px;
-     margin: 0 auto;
-     display: grid;
-     grid-template-columns: 200px 200px 200px;
-     grid-template-rows: 200px 200px 200px;
+    display: grid;
+    width: 500px;
+    height: 500px;
+    margin: 0 auto;
+
+     grid-template-columns: repeat(3, 1fr);
+     grid-template-rows: repeat(3, 1fr);
      grid-row-gap: 0;
      grid-column-gap: 0;
+    /*justify-items: center;*/
 }
 
 #box1{
@@ -83,4 +92,19 @@ body{
     grid-area: 3/3/4/4;
 }
 
+
+#gamingArea {
+    display: flex;
+
+}
+
+.sidebar {
+    width: 300px;
+    height: 250px;
+    border-radius: 14px;
+    background-color: rgba(0,0,0, 0.1);
+    padding: 50px;
+    text-align: left;
+    margin-left: 40px;
+}
 

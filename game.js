@@ -1,10 +1,10 @@
 window.onload = () => {
-    let wordArr1 = ['m', 'a', 'y', 'e', 'f', 'o', 'n', 'g', 'u'];
-    let wordArr1Solution = ['may', 'men', 'you'];
-    let wordArr2 = ['b', 'i', 't', 'c', 'a', 'r', 'e', 'e', 'd'];
-    let wordArr2Solution = ['bad', 'car', 'eat'];
-    sortWordArr(wordArr1Solution);
-    sortWordArr(wordArr2Solution);
+    let wordArr1 = ['M', 'A', 'Y', 'E', 'F', 'O', 'N', 'G', 'U'];
+    let wordArr1Solution = ['MAY', 'MEN', 'YOU'];
+    let wordArr2 = ['B', 'I', 'T', 'C', 'A', 'R', 'E', 'E', 'D'];
+    let wordArr2Solution = ['BAD', 'CAR', 'EAT', 'BIT', 'ICE'];
+    // sortWordArr(wordArr1Solution);
+    // sortWordArr(wordArr2Solution);
 
     let clickedBox = [];
     let letterCollected = '';
@@ -37,6 +37,7 @@ window.onload = () => {
 
     function createNewBoard(wordArr) {
         countWin = 0;
+        document.querySelector('#round').innerHTML = (round === 1) ? "Round 1": "Round 2";
         for (let j = 0; j < allBox.length; j++) {
             allBox[j].innerHTML = wordArr[j];
         }
@@ -47,7 +48,7 @@ window.onload = () => {
         letterCollected = '';
         win = false;
         for (let j = 0; j < allBox.length; j++) {
-            allBox[j].style.backgroundColor = "#ffffff";
+            allBox[j].style.backgroundColor = "rgb(245, 239, 228)";
             allBox[j].innerHTML = wordArr[j];
         }
     }
@@ -61,9 +62,10 @@ window.onload = () => {
         countWin = 0;
         document.getElementById('changeScore').innerHTML = '0';
         for (let j = 0; j < wordArr2.length; j++) {
-            allBox[j].style.backgroundColor = "#ffffff";
+            allBox[j].style.backgroundColor = "rgb(245, 239, 228)";
             allBox[j].innerHTML = '';
         }
+        document.querySelector(".sidebar").innerHTML = '';
     }
 
 
@@ -78,11 +80,11 @@ window.onload = () => {
 
     function checkColor(box,i) {
         let boxColor = window.getComputedStyle(box, null).getPropertyValue('background-color');
-        if (boxColor === "rgb(255, 255, 255)") {
-            box.style.backgroundColor = "#ff0000";
+        if (boxColor === "rgb(245, 239, 228)") {
+            box.style.backgroundColor = "rgb(0, 151, 218)";
             createNewLetterObject(box,i);
         } else {
-            box.style.backgroundColor = "#ffffff";
+            box.style.backgroundColor = "rgb(245, 239, 228)";
             removeLetterObject(box,i);
         }
     }
@@ -114,7 +116,7 @@ window.onload = () => {
 
             if(round === 1){
                 checkWin(wordArr1Solution);
-                if (win === true) {
+                if (win) {
                     console.log('you find one word!');
                     countWin++;
                     console.log(countWin);
@@ -127,7 +129,7 @@ window.onload = () => {
             }
             else{
                 checkWin(wordArr2Solution);
-                if (win === true) {
+                if (win) {
                     console.log('you find one word!');
                     countWin++;
                     console.log(countWin);
@@ -147,7 +149,8 @@ window.onload = () => {
                     createNewBoard(wordArr2);
                 }
                 else{
-                    alert("Finished 2 round! Good on you!");
+                    alert("Finished 2 round! Congrats! " + localStorage.getItem("playerName"));
+                    window.location.replace('./login.html');
                 }
             }
         }
@@ -171,10 +174,17 @@ window.onload = () => {
             console.log("collect letter " + letterCollected);
         }
         for (let k = 0; k < wordArrSolution.length; k++) {
-            if (letterCollected === wordArrSolution[k]) {
+            if (letterCollected === wordArrSolution[k].split('').sort().join('')) {
                 win = true;
+                showLetterOnSideBar(wordArrSolution[k]);
+                wordArrSolution.splice(k,1);
+                break;
             }
         }
+    }
+
+    function showLetterOnSideBar(candidate) {
+        document.querySelector(".sidebar").innerHTML += candidate + "<br />";
     }
 }
 
