@@ -1,0 +1,53 @@
+body{
+    width: 800px;
+    margin: auto;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    background-image: url("src/memphis-mini.png");
+    /*background-size: cover;*/
+    background-repeat: repeat;
+}
+
+.headline{
+    font-family: 'Anton', sans-serif;
+    font-size: 5em;
+    letter-spacing: 7px;
+}
+
+.form{
+    font-size: 2em;
+    background-color: #00C5BE;
+    border: none;
+    color: white;
+    padding: 20px 50px;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.getUserName{
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+input {
+    height: 30px;
+    width: 250px;
+    font-size: 1rem;
+    text-indent: 10px;
+    margin-right: 10px;
+    border-radius: 19px;
+}
+
+button{
+    height: 36px;
+    width: 50px;
+    font-weight: 900;
+    font-size: 1rem;
+    font-family: Arial;
+    border-radius: 5px;
+}
+
+
+
