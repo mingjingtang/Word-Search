@@ -2,9 +2,7 @@ window.onload = () => {
     let wordArr1 = ['M', 'A', 'Y', 'E', 'F', 'O', 'N', 'G', 'U'];
     let wordArr1Solution = ['MAY', 'MEN', 'YOU'];
     let wordArr2 = ['B', 'I', 'T', 'C', 'A', 'R', 'E', 'E', 'D'];
-    let wordArr2Solution = ['BAD', 'CAR', 'EAT', 'BIT', 'ICE'];
-    // sortWordArr(wordArr1Solution);
-    // sortWordArr(wordArr2Solution);
+    let wordArr2Solution = ['BAD', 'CAR', 'EAT', 'BIT'];
 
     let clickedBox = [];
     let letterCollected = '';
@@ -54,8 +52,6 @@ window.onload = () => {
     }
 
     function clearRound(wordArr){
-        // allBox = document.querySelectorAll(".boxes");
-        // console.log(allBox);
         clickedBox = [];
         letterCollected = '';
         win = false;
@@ -141,17 +137,15 @@ window.onload = () => {
                 clearBoard(wordArr2);
             }
 
-            if(countWin === 3){
-                if(round === 1){
-                    alert('You win round 1, do you want to play round 2?');
-                    round++;
-                    clearRound();
-                    createNewBoard(wordArr2);
-                }
-                else{
-                    alert("Finished 2 round! Congrats! " + localStorage.getItem("playerName"));
-                    window.location.replace('./login.html');
-                }
+            if(countWin === 3 && round === 1){
+                alert('You win round 1, do you want to play round 2?');
+                round++;
+                clearRound();
+                createNewBoard(wordArr2);
+            }
+            if(countWin === 4 && round === 2){
+                alert("Finished round 2! Congrats! " + localStorage.getItem("playerName"));
+                window.location.replace('./login.html');
             }
         }
     }
