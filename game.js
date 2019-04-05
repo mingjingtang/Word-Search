@@ -2,7 +2,7 @@ window.onload = () => {
     let wordArr1 = ['M', 'A', 'Y', 'E', 'F', 'O', 'N', 'G', 'U'];
     let wordArr1Solution = ['MAY', 'MEN', 'YOU'];
     let wordArr2 = ['B', 'I', 'T', 'C', 'A', 'R', 'E', 'E', 'D'];
-    let wordArr2Solution = ['BAD', 'CAR', 'EAT', 'BIT', 'ICE'];
+    let wordArr2Solution = ['BAD', 'CAR', 'EAT', 'BIT'];
 
     let clickedBox = [];
     let letterCollected = '';
@@ -143,7 +143,7 @@ window.onload = () => {
                 clearRound();
                 createNewBoard(wordArr2);
             }
-            if(countWin === 5 && round === 2){
+            if(countWin === 4 && round === 2){
                 alert("Finished round 2! Congrats! " + localStorage.getItem("playerName"));
                 window.location.replace('./login.html');
             }
