@@ -16,17 +16,6 @@ window.onload = () => {
 
     createNewBoard(wordArr1);
 
-    const url = `https://api.datamuse.com/words?sp=${letterCollected}`;
-
-    fetch(url)
-    .then((res)=> res.json())
-    .then(res => {
-        console.log(res);
-    })
-    .catch(res => {
-        console.log("Error:" + res);
-    });
-
     class letterObject {
         constructor(letter, number) {
             this.letter = letter;
@@ -117,11 +106,11 @@ window.onload = () => {
 
     function clickBoxNum3() {
         if (clickedBox.length === 3) {
-            sortClickedBox();
+            sortClickedBox(clickedBox);
 
             if(round === 1){
-                checkWin(wordArr1Solution);
-                if (win) {
+                if (checkWin()) {
+                    console.log(checkWin());
                     console.log('you find one word!');
                     countWin++;
                     console.log(countWin);
@@ -160,30 +149,30 @@ window.onload = () => {
     }
 
 
-    function sortClickedBox() {
-        clickedBox.sort(function (a, b) {
-            let textA = a.letter.toUpperCase();
-            let textB = b.letter.toUpperCase();
-            return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-        });
-        console.log(clickedBox);
+    function sortClickedBox(letterObjects) {
+        letterObjects.sort((a, b) => (a.number > b.number)? 1: -1);
+        console.log(letterObjects);
     }
 
 
-    function checkWin(wordArrSolution) {
+    function checkWin() {
         letterCollected = '';
         for (let k = 0; k < 3; k++) {
             letterCollected += clickedBox[k].letter;
-            console.log("collect letter " + letterCollected);
+            console.log("collect letter " + letterCollected.toLowerCase());
         }
-        for (let k = 0; k < wordArrSolution.length; k++) {
-            if (letterCollected === wordArrSolution[k].split('').sort().join('')) {
-                win = true;
-                showLetterOnSideBar(wordArrSolution[k]);
-                wordArrSolution.splice(k,1);
-                break;
-            }
-        }
+        const url = `https://api.datamuse.com/words?sp=${letterCollected}`;
+
+        fetch(url)
+        .then((res)=> res.json())
+        .then(res => {
+            console.log(res[0].word);
+            showLetterOnSideBar(res[0].word);
+            return true;
+        })
+        .catch(res => {
+            console.log("Error:" + res[0].word);
+        }); 
     }
 
     function showLetterOnSideBar(candidate) {
