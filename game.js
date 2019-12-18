@@ -16,7 +16,16 @@ window.onload = () => {
 
     createNewBoard(wordArr1);
 
+    const url = `https://api.datamuse.com/words?sp=${letterCollected}`;
 
+    fetch(url)
+    .then((res)=> res.json())
+    .then(res => {
+        console.log(res);
+    })
+    .catch(res => {
+        console.log("Error:" + res);
+    });
 
     class letterObject {
         constructor(letter, number) {
