@@ -25,6 +25,3 @@ Potential solutons:
 - But if my array have key value pair, the index and the Letter, it will solove the upper two questions.
 
 - ramdom word board prblem, could solve by sign the number and letter directly, to avoid the problem.
-
-Deployment
-This project is available at: [https://useless-war.surge.sh] (https:// useless-war.surge.sh)
