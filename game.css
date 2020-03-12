@@ -2,7 +2,7 @@ body {
   width: 900px;
   margin: 3em auto;
   text-align: center;
-  background-image: url("../src/retina_wood.png");
+  background-image: url("./src/retina_wood.png");
   /*background-size: cover;*/
   font-family: "Anton", sans-serif;
   background-repeat: repeat;
