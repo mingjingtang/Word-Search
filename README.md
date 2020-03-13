@@ -3,7 +3,7 @@
 Game name: Word Search
 
 ![20190401_122828](https://user-images.githubusercontent.com/10451577/55343891-106f8c80-547a-11e9-8408-9206355f8e92.jpg)
-![ws2](./src/readMe-ws-02.jpg)
+![ws2](/src/readMe-ws-02.jpg)
 ![ws3](./src/readMe-ws-03.jpg)
 
 Technologies Used:
@@ -28,3 +28,4 @@ Potential solutons:
 
 Deployment
 This project is available at: [https://useless-war.surge.sh] (https:// useless-war.surge.sh)
+78

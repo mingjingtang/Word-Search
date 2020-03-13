@@ -3,7 +3,6 @@ body {
   margin: 3em auto;
   text-align: center;
   background-image: url("./src/retina_wood.png");
-  /*background-size: cover;*/
   font-family: "Anton", sans-serif;
   background-repeat: repeat;
 }
@@ -15,13 +14,13 @@ body {
   text-transform: uppercase;
 }
 
+.headline p {
+  margin-right: 15px;
+}
+
 .scoreDisplay {
   display: inline-flex;
   margin-left: 3em;
-}
-
-.headline p {
-  margin-right: 15px;
 }
 
 #changeScore {
@@ -29,6 +28,10 @@ body {
   padding: 5px 10px;
   border: 2px solid gray;
   border-radius: 5px;
+}
+
+#gamingArea {
+  display: flex;
 }
 
 .boxes {
@@ -53,7 +56,6 @@ body {
   grid-template-rows: repeat(3, 1fr);
   grid-row-gap: 0;
   grid-column-gap: 0;
-  /*justify-items: center;*/
 }
 
 #box1 {
@@ -90,10 +92,6 @@ body {
 
 #box9 {
   grid-area: 3/3/4/4;
-}
-
-#gamingArea {
-  display: flex;
 }
 
 .sidebar {
