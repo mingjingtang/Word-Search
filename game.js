@@ -53,7 +53,16 @@ function createBoard() {
   for (let i = 0; i < 3; i++) {
     const letter = testArr[i].join("");
     console.log(letter);
-    fetchData(letter);
+
+    const wordObject = fetchData(letter);
+
+    wordObject.then(res => {
+      const wordString = JSON.stringify(wordObject);
+      console.log(wordString);
+
+      // const wordStringLower = wordString.toLowerCase();
+      // console.log(wordStringLower);
+    });
   }
 
   //check column
@@ -61,23 +70,22 @@ function createBoard() {
   //check cross
 }
 
-function fetchData(letter) {
-  const key = "6669422e-7427-45f8-9a37-1a52cd589c10";
-  const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${letter}?key=${key}`;
+async function fetchData(letter) {
+  try {
+    const key = "6669422e-7427-45f8-9a37-1a52cd589c10";
+    const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${letter}?key=${key}`;
 
-  return fetch(url)
-    .then(res => res.json())
-    .then(res => {
-      if (typeof res == "object") {
-        console.log(res);
-      } else {
-        console.log("not a word");
-        return res;
-      }
-    })
-    .catch(err => {
-      console.log("Error:" + err);
-    });
+    let res = await fetch(url);
+    let jsonObject = await res.json();
+    if (typeof jsonObject[0] == "object") {
+      console.log(jsonObject[0].hwi.hw);
+      return jsonObject[0].hwi.hw;
+    } else {
+      console.log("not a word");
+    }
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 //view
