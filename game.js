@@ -54,15 +54,22 @@ function createBoard() {
     const letter = testArr[i].join("");
     console.log(letter);
 
-    const wordObject = fetchData(letter);
-
-    wordObject.then(res => {
-      const wordString = JSON.stringify(wordObject);
-      console.log(wordString);
-
-      // const wordStringLower = wordString.toLowerCase();
-      // console.log(wordStringLower);
+    const letterIsWord = fetchData(letter).then(data => {
+      try {
+        if (typeof data[0] == "string") {
+          console.log("wrong");
+          return false;
+        } else if (typeof data[0] == "object") {
+          console.log(data[0].hwi.hw.toLowerCase());
+          let returnWord = data[0].hwi.hw.toLowerCase();
+          return true;
+        }
+      } catch (err) {
+        console.log(err);
+      }
     });
+
+    console.log(letterIsWord);
   }
 
   //check column
@@ -75,14 +82,9 @@ async function fetchData(letter) {
     const key = "6669422e-7427-45f8-9a37-1a52cd589c10";
     const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${letter}?key=${key}`;
 
-    let res = await fetch(url);
-    let jsonObject = await res.json();
-    if (typeof jsonObject[0] == "object") {
-      console.log(jsonObject[0].hwi.hw);
-      return jsonObject[0].hwi.hw;
-    } else {
-      console.log("not a word");
-    }
+    const res = await fetch(url);
+    const jsonObject = await res.json();
+    return jsonObject;
   } catch (err) {
     console.log(err);
   }
