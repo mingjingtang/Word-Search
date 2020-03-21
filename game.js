@@ -54,22 +54,38 @@ function createBoard() {
     const letter = testArr[i].join("");
     console.log(letter);
 
-    const letterIsWord = fetchData(letter).then(data => {
-      try {
+    let isWord;
+    let wordSpell;
+
+    //keep fetch word
+    let letterIsWord = fetchData(letter)
+      .then(data => {
         if (typeof data[0] == "string") {
-          console.log("wrong");
+          isWord = false;
+          wordSpell = "wrong";
           return false;
         } else if (typeof data[0] == "object") {
-          console.log(data[0].hwi.hw.toLowerCase());
-          let returnWord = data[0].hwi.hw.toLowerCase();
+          isWord = true;
+          wordSpell = data[0].hwi.hw.toLowerCase();
           return true;
         }
-      } catch (err) {
-        console.log(err);
-      }
-    });
+      })
+      .catch(err => console.log(err));
 
-    console.log(letterIsWord);
+    letterIsWord = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    //Get the word after 1 second and then return isWord
+    let resolvedAnwser = letterIsWord(1 * 1000)
+      .then(() => {
+        console.log("1 seconds expired!");
+      })
+      .catch(err => console.log(err));
+
+    resolvedAnwser.then(() => {
+      console.log("promise resolved!");
+      console.log("isWord value: " + isWord);
+      console.log("word is: " + wordSpell);
+    });
   }
 
   //check column
