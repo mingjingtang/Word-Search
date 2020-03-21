@@ -62,12 +62,10 @@ function createBoard() {
       .then(data => {
         if (typeof data[0] == "string") {
           isWord = false;
-          wordSpell = "wrong";
-          return false;
+          wordSpell = "wrong " + letter;
         } else if (typeof data[0] == "object") {
           isWord = true;
           wordSpell = data[0].hwi.hw.toLowerCase();
-          return true;
         }
       })
       .catch(err => console.log(err));
@@ -82,10 +80,20 @@ function createBoard() {
       .catch(err => console.log(err));
 
     resolvedAnwser.then(() => {
-      console.log("promise resolved!");
       console.log("isWord value: " + isWord);
       console.log("word is: " + wordSpell);
+      if (isWord == true) {
+        return true;
+      } else {
+        return false;
+      }
     });
+
+    if (resolvedAnwser == true) {
+      console.log("letter is a word");
+    } else {
+      console.log("letter is not a word");
+    }
   }
 
   //check column
