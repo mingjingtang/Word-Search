@@ -1,5 +1,6 @@
 //Model
-function createBoard() {
+const createBoard = async _ => {
+  // function createBoard() {
   const letters = [
     "a",
     "b",
@@ -44,71 +45,69 @@ function createBoard() {
 
   //check valid board
   const testArr = [
-    ["a", "b", "c"],
+    ["x", "b", "c"],
     ["p", "e", "n"],
     ["j", "d", "k"]
   ];
 
   //check row
-  for (let i = 0; i < 3; i++) {
-    const letter = testArr[i].join("");
-    console.log(letter);
+  // for (let i = 0; i < 3; i++) {
+  //   const letter = testArr[i].join("");
+  //   console.log(letter);
 
-    let isWord;
-    let wordSpell;
+  //   let wordInDic;
+
+  //   //keep fetch word
+  //   fetchData(letter)
+  //     .then(data => {
+  //       if (typeof data[0] == "object") {
+  //         wordInDic = data[0].hwi.hw.toLowerCase();
+  //         console.log("haha: " + wordInDic);
+  //       }
+  //     })
+  //     .catch(err => console.log(err));
+  // } // for
+
+  const result = testArr.map(async row => {
+    const letter = row.join("");
+    console.log(`jointed row: ${letter}`);
+
+    let wordInDic;
 
     //keep fetch word
-    let letterIsWord = fetchData(letter)
+    await fetchData(letter)
       .then(data => {
-        if (typeof data[0] == "string") {
-          isWord = false;
-          wordSpell = "wrong " + letter;
-        } else if (typeof data[0] == "object") {
-          isWord = true;
-          wordSpell = data[0].hwi.hw.toLowerCase();
+        if (typeof data[0] == "object") {
+          wordInDic = data[0].hwi.hw.toLowerCase();
+          console.log("haha: " + wordInDic);
         }
       })
       .catch(err => console.log(err));
 
-    letterIsWord = ms => new Promise(resolve => setTimeout(resolve, ms));
+    return wordInDic;
+  }); // promise - result
 
-    //Get the word after 1 second and then return isWord
-    let resolvedAnwser = letterIsWord(1 * 1000)
-      .then(() => {
-        console.log("1 seconds expired!");
-      })
-      .catch(err => console.log(err));
+  const wordInDic = await Promise.all(result);
+  console.log(`this is the word: ${wordInDic}`);
+  // if (wordInDic != null) {
+  // }
 
-    resolvedAnwser.then(() => {
-      console.log("isWord value: " + isWord);
-      console.log("word is: " + wordSpell);
-      if (isWord == true) {
-        return true;
-      } else {
-        return false;
-      }
-    });
-
-    if (resolvedAnwser == true) {
-      console.log("letter is a word");
-    } else {
-      console.log("letter is not a word");
-    }
-  }
-
+  console.log("END");
   //check column
 
   //check cross
-}
+};
 
 async function fetchData(letter) {
   try {
     const key = "6669422e-7427-45f8-9a37-1a52cd589c10";
     const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${letter}?key=${key}`;
 
-    const res = await fetch(url);
-    const jsonObject = await res.json();
-    return jsonObject;
+    // const res = await fetch(url);
+    // const jsonObject = await res.json();
+    // return jsonObject;
+
+    return await (await fetch(url)).json();
   } catch (err) {
     console.log(err);
   }
