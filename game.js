@@ -1,4 +1,24 @@
 //Model
+async function fetchData(letter) {
+  try {
+    const key = "6669422e-7427-45f8-9a37-1a52cd589c10";
+    const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${letter}?key=${key}`;
+    return await (await fetch(url)).json();
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+async function checkInDic(letter) {
+  return await fetchData(letter)
+    .then(data => {
+      if (typeof data[0] == "object") {
+        return data[0].hwi.hw.toLowerCase();
+      }
+    })
+    .catch(err => console.log(err));
+}
+
 const createBoard = function() {
   const letters = [
     "a",
@@ -38,9 +58,46 @@ const createBoard = function() {
     }
     testBoard.push(arr);
   }
-
   return testBoard;
 };
+
+async function createArr(arrType, arr) {
+  let resultArr = [];
+  let letterCollect = "";
+
+  if (arrType == "row") {
+    for (let i = 0; i < arr.length; i++) {
+      letterCollect = arr[i].join("");
+      resultArr.push(letterCollect);
+    }
+  } else if (arrType == "col") {
+    for (let i = 0; i < arr[0].length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        letterCollect += arr[j][i];
+      }
+      resultArr.push(letterCollect);
+      letterCollect = "";
+    }
+  } else if (arrType == "cross") {
+    let i = 0;
+    let j = 0;
+    while (i < arr.length && j < arr[0].length) {
+      letterCollect += arr[i][j];
+      i++;
+      j++;
+    }
+    resultArr.push(letterCollect);
+    letterCollect = "";
+    (i = 0), (j = arr[0].length - 1);
+    while (i < arr.length && j >= 0) {
+      letterCollect += arr[i][j];
+      i++;
+      j--;
+    }
+    resultArr.push(letterCollect);
+  }
+  return resultArr;
+}
 
 //fake test board
 const testArr = [
@@ -49,39 +106,33 @@ const testArr = [
   ["j", "d", "k"]
 ];
 
+let countTotalWordExist = 0;
+let checkType = ["row", "col", "cross"];
+
 const testValidBoard = (async function() {
-  //check row
-  let result = testArr.map(async row => {
-    let letter = row.join("");
+  const testResult = checkType.map(async eachType => {
+    const arrs = await createArr(eachType, testArr);
 
-    //keep fetch word
-    return await fetchData(letter)
-      .then(data => {
-        if (typeof data[0] == "object") {
-          return data[0].hwi.hw.toLowerCase();
-        }
-      })
-      .catch(err => console.log(err));
-  }); // promise - result
+    const promises = arrs.map(async letter => {
+      return checkInDic(letter);
+    });
+    const finalArr = await Promise.all(promises);
 
-  //word found array
-  let wordInDic = await Promise.all(result);
-  console.log(wordInDic);
-
-  //check column
-
-  //check cross
+    //go through array if not undefine count++
+    const countWord = finalArr.map(async item => {
+      if (typeof item != "undefined") {
+        countTotalWordExist++;
+      }
+    });
+    const totalWord = await Promise.all(countWord);
+    const count = await Promise.all(totalWord);
+    if (count >= 3) {
+      console.log("is a valid board");
+    }
+    console.log(finalArr);
+    return countTotalWordExist;
+  });
 })();
-
-async function fetchData(letter) {
-  try {
-    const key = "6669422e-7427-45f8-9a37-1a52cd589c10";
-    const url = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${letter}?key=${key}`;
-    return await (await fetch(url)).json();
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 //view
 
