@@ -108,10 +108,11 @@ const testArr = [
 
 let countTotalWordExist = 0;
 let checkType = ["row", "col", "cross"];
+const testBoard = createBoard();
 
 const testValidBoard = (async function() {
   const allTypeOfArrs = checkType.map(async eachType => {
-    return createArr(eachType, testArr);
+    return createArr(eachType, testBoard);
   });
   const arrs = await Promise.all(allTypeOfArrs);
 
@@ -128,7 +129,7 @@ const testValidBoard = (async function() {
   console.log(finalArr);
 
   finalArr.forEach(item => {
-    if (item != undefined) {
+    if (item != undefined && item.length == 3) {
       countTotalWordExist++;
     }
   });
