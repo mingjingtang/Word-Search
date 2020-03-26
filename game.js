@@ -110,28 +110,31 @@ let countTotalWordExist = 0;
 let checkType = ["row", "col", "cross"];
 
 const testValidBoard = (async function() {
-  const testResult = checkType.map(async eachType => {
-    const arrs = await createArr(eachType, testArr);
-
-    const promises = arrs.map(async letter => {
-      return checkInDic(letter);
-    });
-    const finalArr = await Promise.all(promises);
-
-    //go through array if not undefine count++
-    const countWord = finalArr.map(async item => {
-      if (typeof item != "undefined") {
-        countTotalWordExist++;
-      }
-    });
-    const totalWord = await Promise.all(countWord);
-    const count = await Promise.all(totalWord);
-    if (count >= 3) {
-      console.log("is a valid board");
-    }
-    console.log(finalArr);
-    return countTotalWordExist;
+  const allTypeOfArrs = checkType.map(async eachType => {
+    return createArr(eachType, testArr);
   });
+  const arrs = await Promise.all(allTypeOfArrs);
+
+  const newArr = [];
+  for (let i = 0; i < arrs.length; i++) {
+    newArr.push(...arrs[i]);
+  }
+  console.log(newArr);
+
+  const letterOrUndefine = newArr.map(async letter => {
+    return checkInDic(letter);
+  });
+  const finalArr = await Promise.all(letterOrUndefine);
+  console.log(finalArr);
+
+  finalArr.forEach(item => {
+    if (item != undefined) {
+      countTotalWordExist++;
+    }
+  });
+
+  countTotalWordExist >= 3 ? console.log(true) : console.log(false);
+  return countTotalWordExist >= 3 ? true : false;
 })();
 
 //view
