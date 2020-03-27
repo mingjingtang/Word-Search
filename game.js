@@ -50,9 +50,9 @@ const createBoard = function() {
   ];
   const testBoard = [];
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < 5; i++) {
     const arr = [];
-    for (let j = 0; j < 3; j++) {
+    for (let j = 0; j < 5; j++) {
       let randomNum = Math.round(Math.random() * (letters.length - 1 - 0) + 0);
       arr.push(letters[randomNum]);
     }
@@ -99,13 +99,6 @@ async function createArr(arrType, arr) {
   return resultArr;
 }
 
-//fake test board
-const testArr = [
-  ["a", "b", "c"],
-  ["p", "e", "n"],
-  ["j", "d", "k"]
-];
-
 let countTotalWordExist = 0;
 let checkType = ["row", "col", "cross"];
 const testBoard = createBoard();
@@ -114,23 +107,25 @@ const testValidBoard = (async function() {
   const allTypeOfArrs = checkType.map(async eachType => {
     return createArr(eachType, testBoard);
   });
-  const arrs = await Promise.all(allTypeOfArrs);
+  const twoDArr = await Promise.all(allTypeOfArrs);
 
-  const newArr = [];
-  for (let i = 0; i < arrs.length; i++) {
-    newArr.push(...arrs[i]);
+  const mergedTwoDArr = [];
+  for (let i = 0; i < twoDArr.length; i++) {
+    mergedTwoDArr.push(...twoDArr[i]);
   }
-  console.log(newArr);
+  console.log(mergedTwoDArr);
 
-  const letterOrUndefine = newArr.map(async letter => {
+  const letterOrUndefine = mergedTwoDArr.map(async letter => {
     return checkInDic(letter);
   });
   const finalArr = await Promise.all(letterOrUndefine);
   console.log(finalArr);
 
+  const answerArr = [];
   finalArr.forEach(item => {
     if (item != undefined && item.length == 3) {
       countTotalWordExist++;
+      answerArr.push();
     }
   });
 
