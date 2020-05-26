@@ -27,4 +27,4 @@ Potential solutons:
 - ramdom word board prblem, could solve by sign the number and letter directly, to avoid the problem.
 
 Deployment
-This project is available at: [https://useless-war.surge.sh] (https:// useless-war.surge.sh)
+https://book-club-sei-ga.herokuapp.com/
