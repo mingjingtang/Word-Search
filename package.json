@@ -1,0 +1,19 @@
+{
+  "name": "word-search-ga",
+  "version": "1.0.0",
+  "description": "fun application to play word search",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mingjingtang/Word-Search.git"
+  },
+  "author": "mingjing tang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mingjingtang/Word-Search/issues"
+  },
+  "homepage": "https://github.com/mingjingtang/Word-Search#readme"
+}
